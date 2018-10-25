@@ -71,14 +71,21 @@ public class Principal extends javax.swing.JFrame {
 
         lblNumeroUno.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         lblNumeroUno.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        getContentPane().add(lblNumeroUno, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 110, 30));
+        getContentPane().add(lblNumeroUno, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 90, 30));
 
         lblNumeroDos.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         lblNumeroDos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        getContentPane().add(lblNumeroDos, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 130, 110, 30));
+        getContentPane().add(lblNumeroDos, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, 80, 30));
+
+        txtResultado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtResultadoKeyPressed(evt);
+            }
+        });
         getContentPane().add(txtResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, 70, -1));
 
         btnGo.setText("Go");
+        btnGo.setFocusable(false);
         btnGo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGoActionPerformed(evt);
@@ -90,13 +97,13 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().add(lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, 50, 20));
 
         lblPuntos.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        getContentPane().add(lblPuntos, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 40, 80, 20));
+        getContentPane().add(lblPuntos, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 40, 80, 20));
 
         jLabel2.setText("Vidas");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
 
         lblVidas.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        getContentPane().add(lblVidas, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 70, 30));
+        getContentPane().add(lblVidas, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 70, 30));
 
         btnReiniciar.setText("Reset");
         btnReiniciar.addActionListener(new java.awt.event.ActionListener() {
@@ -117,6 +124,7 @@ public class Principal extends javax.swing.JFrame {
        
        
         txtResultado.setText("");
+        txtResultado.setRequestFocusEnabled(true);
         res = m.comprobarOperacion(x, y,signo);
          System.out.println("res = "+res);
         System.out.println("resIngresado = "+resIngresado);
@@ -150,6 +158,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGoActionPerformed
 
     private void btnReiniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReiniciarActionPerformed
+        
         puntos=0;
         vida=3;
         txtResultado.setText("");
@@ -172,6 +181,50 @@ public class Principal extends javax.swing.JFrame {
             case 4: lblSigno.setText("/");
             }
     }//GEN-LAST:event_btnReiniciarActionPerformed
+
+    private void txtResultadoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtResultadoKeyPressed
+        try {
+           if(evt.getKeyCode()==10){
+               int resIngresado = Integer.parseInt(txtResultado.getText());
+       
+       
+        txtResultado.setText("");
+        txtResultado.setRequestFocusEnabled(true);
+        res = m.comprobarOperacion(x, y,signo);
+         System.out.println("res = "+res);
+        System.out.println("resIngresado = "+resIngresado);
+        if(res==resIngresado){
+            puntos = m.Addpuntos();
+            lblPuntos.setText(""+puntos);
+            x = m.numeroRandom(1, 10);
+            y = m.numeroRandom(1, 10);
+            signo = m.signoRandom();
+             switch(signo){
+            case 1: lblSigno.setText("+");
+            break;
+            case 2: lblSigno.setText("-");
+            break;
+            case 3: lblSigno.setText("*");
+            break;
+            case 4: lblSigno.setText("/");
+        }
+             lblNumeroUno.setText(Integer.toString(x));
+             lblNumeroDos.setText(Integer.toString(y));
+        }else{
+            
+                 vida =  m.actualizarVidas();
+                lblVidas.setText(""+vida);
+                if(vida == 0){
+                    JOptionPane.showMessageDialog(rootPane, "GAME OVER");
+                }
+            
+           
+        }
+           }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_txtResultadoKeyPressed
 
     /**
      * @param args the command line arguments
