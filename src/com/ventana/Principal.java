@@ -16,7 +16,7 @@ public class Principal extends javax.swing.JFrame {
 
         int signo = 0, x =0, y =0, res;
         metodos m; 
-        int vida = 3, puntos;
+        int vida, puntos;
      public Principal() {
         initComponents();
         lblPuntos.setText("0");
@@ -58,18 +58,22 @@ public class Principal extends javax.swing.JFrame {
         lblPuntos = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         lblVidas = new javax.swing.JLabel();
+        btnReiniciar = new javax.swing.JButton();
 
         jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        lblSigno.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         lblSigno.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         getContentPane().add(lblSigno, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, 20, 20));
 
+        lblNumeroUno.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         lblNumeroUno.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         getContentPane().add(lblNumeroUno, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 110, 30));
 
+        lblNumeroDos.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         lblNumeroDos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         getContentPane().add(lblNumeroDos, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 130, 110, 30));
         getContentPane().add(txtResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, 70, -1));
@@ -80,15 +84,27 @@ public class Principal extends javax.swing.JFrame {
                 btnGoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnGo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 280, -1, -1));
+        getContentPane().add(btnGo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, 60, 40));
 
         lbl.setText("Puntos");
         getContentPane().add(lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, 50, 20));
-        getContentPane().add(lblPuntos, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 40, 80, 20));
+
+        lblPuntos.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        getContentPane().add(lblPuntos, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 40, 80, 20));
 
         jLabel2.setText("Vidas");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
-        getContentPane().add(lblVidas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 70, 30));
+
+        lblVidas.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        getContentPane().add(lblVidas, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 70, 30));
+
+        btnReiniciar.setText("Reset");
+        btnReiniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReiniciarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnReiniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 280, -1, -1));
 
         setSize(new java.awt.Dimension(499, 425));
         setLocationRelativeTo(null);
@@ -100,7 +116,7 @@ public class Principal extends javax.swing.JFrame {
         int resIngresado = Integer.parseInt(txtResultado.getText());
        
        
-        
+        txtResultado.setText("");
         res = m.comprobarOperacion(x, y,signo);
          System.out.println("res = "+res);
         System.out.println("resIngresado = "+resIngresado);
@@ -123,7 +139,7 @@ public class Principal extends javax.swing.JFrame {
              lblNumeroDos.setText(Integer.toString(y));
         }else{
             
-                 vida =  m.actualizarVidas(vida);
+                 vida =  m.actualizarVidas();
                 lblVidas.setText(""+vida);
                 if(vida == 0){
                     JOptionPane.showMessageDialog(rootPane, "GAME OVER");
@@ -132,6 +148,30 @@ public class Principal extends javax.swing.JFrame {
            
         }
     }//GEN-LAST:event_btnGoActionPerformed
+
+    private void btnReiniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReiniciarActionPerformed
+        puntos=0;
+        vida=3;
+        txtResultado.setText("");
+        lblPuntos.setText("0");
+        lblVidas.setText("3");
+        m= new metodos();
+         x = m.numeroRandom(1, 10);
+        y = m.numeroRandom(1, 10);
+        res = m.comprobarOperacion(x, y,signo);
+        signo = m.signoRandom();
+        lblNumeroUno.setText(Integer.toString(x));
+             lblNumeroDos.setText(Integer.toString(y));
+            switch(signo){
+            case 1: lblSigno.setText("+");
+            break;
+            case 2: lblSigno.setText("-");
+            break;
+            case 3: lblSigno.setText("*");
+            break;
+            case 4: lblSigno.setText("/");
+            }
+    }//GEN-LAST:event_btnReiniciarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -170,6 +210,7 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGo;
+    private javax.swing.JButton btnReiniciar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lbl;

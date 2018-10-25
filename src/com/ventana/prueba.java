@@ -19,6 +19,7 @@ public class prueba {
     public static void main(String[] args) {
         metodos m = new metodos();
         System.out.println(m.signoRandom());
+        System.out.println(100%20);
     }
     
 }
