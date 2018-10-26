@@ -5,6 +5,8 @@
  */
 package com.metodos;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author jose1
@@ -24,7 +26,7 @@ public class metodos {
         int retorno = numeroRandom(1, 5);
         return retorno;
     }
-
+    
     public boolean comprobar(int x, int y, int signo) {
         boolean res = false;
 
@@ -63,7 +65,6 @@ public class metodos {
             case 4:
                 res = x / y;
                 break;
-
         }
 
         return res;
@@ -76,13 +77,32 @@ public class metodos {
         return puntaje;
     }
 
-    public int actualizarVidas() {
+    public int restarVidas() {
         if (vida > 0 && vida <= 3) {
             vida = vida - 1;
         } else {
             vida = 0;
         }
-
+        
         return vida;
+    }
+    public int sumarVidas(){
+        ArrayList<Integer> res;
+        res = llenar();
+        for (int i = 0; i < res.size(); i++) {
+            if(puntaje == res.get(i)){
+                vida++;
+            }
+            
+        }
+        return vida;
+    }
+
+    public ArrayList<Integer> llenar(){
+        ArrayList<Integer> res = new ArrayList<>();
+        for (int i = 100; i < 10000; i= i+100) { 
+            res.add(i);
+        }
+        return res;
     }
 }

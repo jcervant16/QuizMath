@@ -14,29 +14,36 @@ import javax.swing.JOptionPane;
  */
 public class Principal extends javax.swing.JFrame {
 
-        int signo = 0, x =0, y =0, res;
-        metodos m; 
-        int vida, puntos;
-     public Principal() {
+    int signo = 0, x = 0, y = 0, res;
+    metodos m;
+    int vida, puntos;
+
+    public Principal() {
         initComponents();
+        this.setTitle("Juego de Operaciones Matematicas");
         lblPuntos.setText("0");
         lblVidas.setText("3");
-        m= new metodos();
-         x = m.numeroRandom(1, 10);
+        m = new metodos();
+        x = m.numeroRandom(1, 10);
         y = m.numeroRandom(1, 10);
-        res = m.comprobarOperacion(x, y,signo);
+        res = m.comprobarOperacion(x, y, signo);
         signo = m.signoRandom();
         lblNumeroUno.setText(Integer.toString(x));
-             lblNumeroDos.setText(Integer.toString(y));
-            switch(signo){
-            case 1: lblSigno.setText("+");
-            break;
-            case 2: lblSigno.setText("-");
-            break;
-            case 3: lblSigno.setText("*");
-            break;
-            case 4: lblSigno.setText("/");
-            }
+        lblNumeroDos.setText(Integer.toString(y));
+        switch (signo) {
+            case 1:
+                lblSigno.setText("+");
+                break;
+            case 2:
+                lblSigno.setText("-");
+                break;
+            case 3:
+                lblSigno.setText("*");
+                break;
+            case 4:
+                lblSigno.setText("/");
+        }
+
     }
 
     /**
@@ -49,49 +56,22 @@ public class Principal extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        lblSigno = new javax.swing.JLabel();
-        lblNumeroUno = new javax.swing.JLabel();
-        lblNumeroDos = new javax.swing.JLabel();
-        txtResultado = new javax.swing.JTextField();
-        btnGo = new javax.swing.JButton();
         lbl = new javax.swing.JLabel();
         lblPuntos = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         lblVidas = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        lblNumeroUno = new javax.swing.JLabel();
+        lblSigno = new javax.swing.JLabel();
+        lblNumeroDos = new javax.swing.JLabel();
+        txtResultado = new javax.swing.JTextField();
+        btnGo = new javax.swing.JButton();
         btnReiniciar = new javax.swing.JButton();
 
         jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblSigno.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        lblSigno.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        getContentPane().add(lblSigno, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, 20, 20));
-
-        lblNumeroUno.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        lblNumeroUno.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        getContentPane().add(lblNumeroUno, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 90, 30));
-
-        lblNumeroDos.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        lblNumeroDos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        getContentPane().add(lblNumeroDos, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, 80, 30));
-
-        txtResultado.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtResultadoKeyPressed(evt);
-            }
-        });
-        getContentPane().add(txtResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, 70, -1));
-
-        btnGo.setText("Go");
-        btnGo.setFocusable(false);
-        btnGo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnGo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, 60, 40));
 
         lbl.setText("Puntos");
         getContentPane().add(lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, 50, 20));
@@ -105,122 +85,139 @@ public class Principal extends javax.swing.JFrame {
         lblVidas.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         getContentPane().add(lblVidas, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 70, 30));
 
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblNumeroUno.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblNumeroUno.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jPanel1.add(lblNumeroUno, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, 80, 30));
+
+        lblSigno.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jPanel1.add(lblSigno, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 20, 20));
+
+        lblNumeroDos.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jPanel1.add(lblNumeroDos, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 80, 30));
+
+        txtResultado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtResultadoKeyPressed(evt);
+            }
+        });
+        jPanel1.add(txtResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 70, -1));
+
+        btnGo.setText("Go");
+        btnGo.setFocusable(false);
+        btnGo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnGo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 70, 40));
+
         btnReiniciar.setText("Reset");
         btnReiniciar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReiniciarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnReiniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 280, -1, -1));
+        jPanel1.add(btnReiniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, -1, 30));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 300, 160));
 
         setSize(new java.awt.Dimension(499, 425));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoActionPerformed
+       this.juego();
        
-        
-        int resIngresado = Integer.parseInt(txtResultado.getText());
-       
-       
+    }//GEN-LAST:event_btnGoActionPerformed
+     public void juego(){
+          int resIngresado = Integer.parseInt(txtResultado.getText());
+
         txtResultado.setText("");
         txtResultado.setRequestFocusEnabled(true);
-        res = m.comprobarOperacion(x, y,signo);
-         System.out.println("res = "+res);
-        System.out.println("resIngresado = "+resIngresado);
-        if(res==resIngresado){
+        res = m.comprobarOperacion(x, y, signo);
+        System.out.println("res = " + res);
+        System.out.println("resIngresado = " + resIngresado);
+        if (res == resIngresado) {
             puntos = m.Addpuntos();
-            lblPuntos.setText(""+puntos);
+            lblPuntos.setText("" + puntos);
             x = m.numeroRandom(1, 10);
             y = m.numeroRandom(1, 10);
             signo = m.signoRandom();
-             switch(signo){
-            case 1: lblSigno.setText("+");
-            break;
-            case 2: lblSigno.setText("-");
-            break;
-            case 3: lblSigno.setText("*");
-            break;
-            case 4: lblSigno.setText("/");
-        }
-             lblNumeroUno.setText(Integer.toString(x));
-             lblNumeroDos.setText(Integer.toString(y));
-        }else{
-            
-                 vida =  m.actualizarVidas();
-                lblVidas.setText(""+vida);
-                if(vida == 0){
-                    JOptionPane.showMessageDialog(rootPane, "GAME OVER");
-                }
-            
-           
-        }
-    }//GEN-LAST:event_btnGoActionPerformed
+            switch (signo) {
+                case 1:
+                    lblSigno.setText("+");
+                    break;
+                case 2:
+                    lblSigno.setText("-");
+                    break;
+                case 3:
+                    lblSigno.setText("*");
+                    break;
+                case 4:
+                    lblSigno.setText("/");
+            }
+            lblNumeroUno.setText(Integer.toString(x));
+            lblNumeroDos.setText(Integer.toString(y));
+            vida = m.sumarVidas();
+            lblVidas.setText("" + vida);
+        } else {
 
-    private void btnReiniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReiniciarActionPerformed
-        
-        puntos=0;
-        vida=3;
+            vida = m.restarVidas();
+            lblVidas.setText("" + vida);
+            if (vida == 0) {
+                JOptionPane.showMessageDialog(rootPane, "GAME OVER");
+                txtResultado.setEditable(false);
+            }
+
+        }
+     }
+     public void reiniciar(){
+           txtResultado.setEditable(true);
+        txtResultado.setFocusable(true);
+        btnReiniciar.setFocusable(false);
+        puntos = 0;
+        vida = 3;
         txtResultado.setText("");
         lblPuntos.setText("0");
         lblVidas.setText("3");
-        m= new metodos();
-         x = m.numeroRandom(1, 10);
+        m = new metodos();
+        x = m.numeroRandom(1, 10);
         y = m.numeroRandom(1, 10);
-        res = m.comprobarOperacion(x, y,signo);
+        res = m.comprobarOperacion(x, y, signo);
         signo = m.signoRandom();
         lblNumeroUno.setText(Integer.toString(x));
-             lblNumeroDos.setText(Integer.toString(y));
-            switch(signo){
-            case 1: lblSigno.setText("+");
-            break;
-            case 2: lblSigno.setText("-");
-            break;
-            case 3: lblSigno.setText("*");
-            break;
-            case 4: lblSigno.setText("/");
-            }
+        lblNumeroDos.setText(Integer.toString(y));
+        switch (signo) {
+            case 1:
+                lblSigno.setText("+");
+                break;
+            case 2:
+                lblSigno.setText("-");
+                break;
+            case 3:
+                lblSigno.setText("*");
+                break;
+            case 4:
+                lblSigno.setText("/");
+        }
+     }
+    private void btnReiniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReiniciarActionPerformed
+            this.reiniciar();
     }//GEN-LAST:event_btnReiniciarActionPerformed
 
     private void txtResultadoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtResultadoKeyPressed
         try {
-           if(evt.getKeyCode()==10){
-               int resIngresado = Integer.parseInt(txtResultado.getText());
-       
-       
-        txtResultado.setText("");
-        txtResultado.setRequestFocusEnabled(true);
-        res = m.comprobarOperacion(x, y,signo);
-         System.out.println("res = "+res);
-        System.out.println("resIngresado = "+resIngresado);
-        if(res==resIngresado){
-            puntos = m.Addpuntos();
-            lblPuntos.setText(""+puntos);
-            x = m.numeroRandom(1, 10);
-            y = m.numeroRandom(1, 10);
-            signo = m.signoRandom();
-             switch(signo){
-            case 1: lblSigno.setText("+");
-            break;
-            case 2: lblSigno.setText("-");
-            break;
-            case 3: lblSigno.setText("*");
-            break;
-            case 4: lblSigno.setText("/");
-        }
-             lblNumeroUno.setText(Integer.toString(x));
-             lblNumeroDos.setText(Integer.toString(y));
-        }else{
             
-                 vida =  m.actualizarVidas();
-                lblVidas.setText(""+vida);
-                if(vida == 0){
-                    JOptionPane.showMessageDialog(rootPane, "GAME OVER");
+            if (evt.getKeyCode() == 10) {
+                this.juego();
+                
+            }else{
+                if(evt.getKeyCode() == 116){
+                    this.reiniciar();
                 }
-            
-           
-        }
-           }
+            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -266,6 +263,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton btnReiniciar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbl;
     private javax.swing.JLabel lblNumeroDos;
     private javax.swing.JLabel lblNumeroUno;
